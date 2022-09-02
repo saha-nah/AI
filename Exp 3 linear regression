@@ -1,0 +1,55 @@
+from google.colab import drive 
+
+drive.mount('/content/drive') 
+
+import numpy as np 
+
+import pandas as pd 
+
+import matplotlib.pyplot as plt 
+
+import seaborn as sns 
+
+cd /content/drive/My Drive/Dataset 
+
+dataset=pd.read_csv("basketball.csv") 
+
+from sklearn.linear_model import LinearRegression 
+
+pd.set_option("display.max.rows",None) 
+
+regressor=LinearRegression() 
+
+trainX=dataset.loc[0:2455,['ADJOE','ADJDE','BARTHAG','EFG_O','EFG_D','TOR']] 
+
+trainY=dataset.loc[0:2455,['G']] 
+
+X_train, X_test, Y_train,Y_test = train_test_split(X, Y, random_state=0, train_size = .75) 
+
+pred=regressor.predict(trainX) 
+
+from sklearn.metrics import r2_score,mean_squared_error 
+
+mse=mean_squared_error(trainY,pred) 
+
+r2=r2_score(trainY,pred) 
+
+plt.plot(trainX,pred,color='pink',marker='o') 
+
+print("Mean Squared Error:",mse) 
+
+print("R-Squared:",r2) 
+
+print("Y-intercept:",regressor.intercept_) 
+
+print("Slope:",regressor.coef_) 
+
+plt.scatter(Y_test,pred);  
+
+plt.xlabel('Actual')  
+
+plt.ylabel('Predicted')  
+
+sns.regplot(x=Y_test,y=pred,ci=None,color='violet')  
+
+ 
