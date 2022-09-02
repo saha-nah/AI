@@ -1,0 +1,156 @@
+import numpy as np 
+
+import matplotlib.pyplot as plt 
+
+import pandas as pd 
+
+import seaborn as sns 
+
+ 
+
+from google.colab import drive 
+
+drive.mount('/content/drive') 
+
+cd/content/drive/My Drive 
+
+dataset=pd.read_csv('diabetes.csv') 
+
+dataset.tail() 
+
+ 
+
+from sklearn.linear_model import LogisticRegression 
+
+from sklearn.model_selection import train_test_split 
+
+ 
+
+X=dataset.loc[0:768,['Pregnancies','Glucose','BloodPressure','SkinThickness','Insulin','BMI','DiabetesPedigreeFunction','Age']] 
+
+Y=dataset.loc[0:768,['Outcome']] 
+
+ 
+
+X_train, X_test, Y_train, Y_test=train_test_split(X,Y,random_state=0,train_size=0.75) 
+
+ 
+
+logreg= LogisticRegression() 
+
+ 
+
+logreg.fit(X_train,Y_train) 
+
+ 
+
+Y_pred_test = logreg.predict(X_test) 
+
+Y_pred_train = logreg.predict(X_train) 
+
+ 
+
+from sklearn.metrics import confusion_matrix 
+
+ 
+
+cnf_matrix_test = confusion_matrix(Y_test, Y_pred_test) 
+
+cnf_matrix_train = confusion_matrix(Y_train, Y_pred_train) 
+
+print('Confusion Matrix For Test Data = ', cnf_matrix_test) 
+
+print('Confusion Matrix For Train Data = ', cnf_matrix_train) 
+
+ 
+
+#Test Data 
+
+ 
+
+class_names=[0,1] # name  of classes 
+
+fig, ax = plt.subplots() 
+
+tick_marks = np.arange(len(class_names)) 
+
+plt.xticks(tick_marks, class_names) 
+
+plt.yticks(tick_marks, class_names) 
+
+# create heatmap 
+
+sns.heatmap(pd.DataFrame(cnf_matrix_test), annot=True, cmap="YlGnBu" ,fmt='g') 
+
+ax.xaxis.set_label_position("top") 
+
+plt.tight_layout() 
+
+plt.title('Confusion matrix', y=1.1) 
+
+plt.ylabel('Actual label') 
+
+plt.xlabel('Predicted label') 
+
+ 
+
+#Train Data 
+
+
+class_names=[0,1] # name  of classes 
+
+fig, ax = plt.subplots() 
+
+tick_marks = np.arange(len(class_names)) 
+
+plt.xticks(tick_marks, class_names) 
+
+plt.yticks(tick_marks, class_names) 
+
+# create heatmap 
+
+sns.heatmap(pd.DataFrame(cnf_matrix_train), annot=True, cmap="YlGnBu" ,fmt='g') 
+
+ax.xaxis.set_label_position("top") 
+
+plt.tight_layout() 
+
+plt.title('Confusion matrix', y=1.1) 
+
+plt.ylabel('Actual label') 
+
+plt.xlabel('Predicted label') 
+
+ 
+
+ 
+
+from sklearn.metrics import accuracy_score,precision_score,recall_score 
+
+ 
+
+#Test Data 
+
+ 
+
+print('Precision_Score_test = ', precision_score(Y_test, Y_pred_test)) 
+
+print('Recall_Score_test = ', recall_score(Y_test, Y_pred_test)) 
+
+print('Accuracy_Score_test = ', accuracy_score(Y_test, Y_pred_test)) 
+
+
+
+# Train Data 
+
+ 
+print('Precision_Score_train = ', precision_score(Y_train, Y_pred_train)) 
+
+print('Recall_Score_train = ', recall_score(Y_train, Y_pred_train)) 
+
+print('Accuracy_Score_train = ', accuracy_score(Y_train, Y_pred_train)) 
+
+
+logreg.score(X_train,Y_train) 
+
+ 
