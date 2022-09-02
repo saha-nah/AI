@@ -1,0 +1,27 @@
+from google.colab import drive 
+
+drive.mount('/content/drive') 
+
+cd /content/drive/ 
+
+import pandas as pd   
+
+import matplotlib.pyplot as plt   
+
+import seaborn as sns   
+
+dataset = pd.read_csv("heart.csv") 
+
+dataset.shape 
+
+dataset.head() 
+
+dataset.tail() 
+
+pd.set_option("display.max.rows", None) 
+
+dataset 
+
+dataset.describe() 
+
+dataset.sort_values("Age")
