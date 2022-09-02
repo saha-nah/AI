@@ -1,0 +1,177 @@
+l1=[10,0,100,20,50] 
+
+l2=[40,30,40,30,40] 
+
+#----------------------------------- 
+
+mean1=0 
+
+n1=len(l1) 
+
+for i in l1: 
+
+    mean1=mean1+i 
+
+a1=mean1/n1 
+
+print('mean of player 1=',a1) 
+
+mean2=0 
+
+n2=len(l2) 
+
+for i in l2: 
+
+    mean2=mean2+i 
+
+a2=mean2/n2 
+
+print('mean of player 2=',a2) 
+
+#----------------------------- 
+
+median1=0 
+
+if n1%2!=0: 
+
+    print('median of player 1=',l1[n1//2]) 
+
+else: 
+
+    q1=l1[(n1//2)-1]+l1[(n1//2)] 
+
+    print('median of player 1=',int(q1/2)) 
+
+median2=0 
+
+if n2%2!=0: 
+
+    print('median of second player=',l2[n2//2]) 
+
+else: 
+
+    q2=l2[(n2//2)-1]+l2[(n2//2)] 
+
+    print('median of second player=',int(q2/2)) 
+
+#----------------------------------------------------- 
+
+mode1=0 
+
+for i in l1: 
+
+    c1=l1.count(i) 
+
+    if c1>mode1: 
+
+        mode1=c1 
+
+        c3=i 
+
+if mode1==1: 
+
+    print('mode of first player=0') 
+
+else: 
+
+    print('mode of first player=',c3) 
+
+mode2=0 
+
+for j in l2: 
+
+    c2=l2.count(j) 
+
+    if c2>mode2: 
+
+        c4=j 
+
+if mode2==1: 
+
+    print('mode of second player=0') 
+
+else: 
+
+    print('mode of second player=',c4) 
+
+#-------------------------------------------------- 
+
+variance1=0 
+
+sum1=0 
+
+for i in l1: 
+
+    sum1=sum1+(i-a1)**2 
+
+variance2=0 
+
+sum2=0 
+
+for i in l2: 
+
+    sum2=sum2+(i-a2)**2 
+
+#---------------------------------- 
+
+sd1=(sum1/n1)**0.5 
+
+print('standard deviation of first player=',sd1) 
+
+variance1=sd1**2 
+
+print('variance of first player=',variance1) 
+
+sd2=(sum2/n2)**0.5 
+
+print('standard deviation of the second player=',sd2) 
+
+variance2=sd2**2 
+
+print('variance of the second player=',variance2) 
+
+#------------------------------------------------------ 
+
+if sd1>sd2: 
+
+    print('PLAYER 2 AJAY IS SELECTED') 
+
+else: 
+
+    print('PLAYER 1 RAHUL IS SELECTED') 
+
+from matplotlib import pyplot as pyplot 
+
+pyplot.hist([l1,l2]) 
+
+pyplot.show 
+
+ 
+
+ 
+
+Results: 
+
+ 
+
+mean of player 1= 36.0 
+
+mean of player 2= 36.0 
+
+median of player 1= 100 
+
+median of second player= 40 
+
+mode of first player=0 
+
+mode of second player= 40 
+
+standard deviation of first player= 36.11094017053558 
+
+variance of first player= 1304.0 
+
+standard deviation of the second player= 4.898979485566356 
+
+variance of the second player= 23.999999999999996 
+
+PLAYER 2 AJAY IS SELECTED 
